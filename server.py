@@ -1,9 +1,9 @@
-from flask import (
-    Flask,
-    render_template
-)
+from flask import render_template
+import connexion
 
-app = Flask(__name__, template_folder="templates")
+app = connexion.App(__name__, specification_dir='swagger/')
+app.add_api('swagger.yml')
+
 @app.route('/')
 def home():
     return render_template('home.html')
