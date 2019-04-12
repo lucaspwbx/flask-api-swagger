@@ -1,12 +1,12 @@
 from flask import render_template
-import connexion
+import config
 
-app = connexion.App(__name__, specification_dir='swagger/')
-app.add_api('swagger.yml')
+connex_app = config.connex_app
+connex_app.add_api("swagger.yml")
 
-@app.route('/')
+@connex_app.route('/')
 def home():
     return render_template('home.html')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    connex_app.run(debug=True)
